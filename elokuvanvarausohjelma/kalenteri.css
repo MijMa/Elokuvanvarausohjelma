@@ -1,0 +1,149 @@
+table.calendar {
+    margin-bottom: 0;
+}
+
+table.calendar > thead > tr > th {
+    text-align: center;
+    color: #333;
+    background-color: #d4d4d4;
+    border-color: #8c8c8c;
+}
+
+table.calendar > tbody > tr > td {
+    color: aliceblue;
+    height: 20px;
+}
+table.calendar > tbody > tr > td.has-events {
+    color: aliceblue;
+    height: 20px;
+}
+
+table.calendar > tbody > tr > td > div {
+    //padding: 8px;
+    height: 40px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    float: left;
+    color: aliceblue;
+}
+
+table.calendar > tbody > tr > td.has-events {
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 4px;
+}
+
+table.calendar > tbody > tr > td.has-events > div {
+    background-color: #08C;
+    border-left: 1px solid white;
+}
+table.calendar > tbody > tr > td.has-events.selectedForAnnihilation > div {
+    background-color: #e20a0a;
+    border-left: 1px solid white;
+}
+table.calendar > tbody > tr > td.has-events.selectedForSelection > div {
+    background-color: green;
+    border-left: 1px solid white;
+}
+
+table.calendar > tbody > tr > td.has-events > div.practice {
+    opacity: 0.7;
+}
+table.calendar > tbody > tr > td.conflicts > div > span.title {
+    //color: red;
+}
+table.calendar > tbody > tr > td.max-conflicts > div {
+    background-color: red;
+    color: white;
+}
+
+table.calendar > tbody > tr > td.has-events > div > span {
+    display: block;
+    text-align: center;
+}
+table.calendar > tbody > tr > td.has-events > div > span a {
+    color: white;
+}
+
+table.calendar > tbody > tr > td.has-events > div > span.title {
+    font-weight: bold;
+}
+
+table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > td {
+    border: 0;
+}
+
+.table tbody tr.hover td, .table tbody tr.hover th {
+    background-color: whiteSmoke;
+}
+.no-events-disabled{
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+}
+.divdisabler{
+    position: relative;
+    width: 0;
+    height: 0;
+}
+
+body {
+    background: #456;
+    font-family: 'Open Sans', sans-serif;
+}
+.login {
+    width: 400px;margin: 16px auto;font-size: 16px;
+}
+/* Reset top and bottom margins */
+.login-header,.login p {
+    margin-top: 0;margin-bottom: 0;
+}
+.login-header {
+    background: #08C;
+    padding: 20px;
+    font-size: 1.4em;
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;}
+.login-container {
+    background: rgb(150, 110, 180);
+    padding: 12px;
+}
+/* Every row inside .login-container is defined with p tags */
+.login p {
+    padding: 12px;
+}
+.login input {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border-width: 1px;
+    border-style: solid;
+    padding: 16px;
+    outline: 0;
+    font-family: inherit;
+    font-size: 0.95em;
+}
+/* login button style specified */
+.login input[type="submit"] {
+    background: #28d; color: #fff;cursor: pointer;
+}
+/* Button focus effect */
+.login input[type="submit"]:hover {
+    background: #17c;
+}
+/* all elements align with this size */
+@media all (max-width:450px){
+.login {
+    width: 95%;
+    }
+}

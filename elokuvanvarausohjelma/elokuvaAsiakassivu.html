@@ -1,0 +1,315 @@
+<!DOCTYPE HTML>
+<html>
+  
+   <head>
+        <title>Bootstaplayouts</title>
+        
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+        <link href="index_responsivelayoutmain.css" rel="stylesheet" type="text/css">
+        <!-- <link href="index_responsivelayoutmainOther.css" rel="stylesheet" type="text/css"> -->
+         <link href="kalenteri.css" rel="stylesheet" type="text/css">
+        <!-- /. <link rel="import" href="index.html" class="indexImport"> -->
+
+    </head>
+<body onload="updateCalendarEvents()">
+ <header class="navbar-inverse" role="banner"> <!-- /.Banneri ja sen sisalto -->
+    <div class="container">
+     <nav role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Elokuvateatteri</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+           <!-- /.bannerin napit ja directit -->
+            <li id="bannerinappi2" class=""><a href="elokuvalogin.html">Kirjautumissivu</a></li> 
+                <script type="text/javascript">
+                document.getElementById("bannerinappi2").onclick = function () {
+                location.href = "elokuvalogin.html";
+                };</script>
+            <li id="bannerinappi3" class="active"><a href="elokuvaAsiakassivu.html">Kayttajasivu</a></li>
+                <script type="text/javascript">
+                document.getElementById("bannerinappi3").onclick = function () {
+                location.href = "elokuvaAsiakassivu.html";
+                };</script>
+            <li id="bannerinappi4" class=""><a href="index.html">Adminsivu</a></li>
+                <script type="text/javascript">
+                document.getElementById("bannerinappi4").onclick = function () {
+                location.href = "index.html";
+                };</script>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    </div>
+ </header> <!-- /.paneelit ja sisallot -->
+ 
+ <p id="userNimi" class="adminNimi">User:</p>
+    <script>document.getElementById('userNimi').textContent = ("User: " + sessionStorage.getItem("currentLoginUser"));</script>
+    <div class="container1">
+        <div class="container2">
+             <p class="addedUsers">User movie select</p>
+             <div id="RegisterAlertArea" class="alert alert-danger RegisterAlert" role="alert" style="display: none;">
+                 <a href="#" id="errorText" class="alert-link">Error: Wrong input/anna tietoja</a>
+             </div>
+             <div>
+                 <div class="container">  <!-- Käyttäjänlisäys -->
+                  <div class="row">
+                        <div id="legend">
+                              <legend class="legend">Your movies and seating</legend>
+                        </div>
+                    <div class="col-md-6">
+
+                          <form name="registerForm" class="form-horizontal" action="" method="" onsubmit="return false"> <!-- method="POST" -->
+                          <fieldset>
+                           <br>
+                            <div class="control-group">
+                              <label class="signup-label" for="username">If you wish to cancel a reservation, click the movie reservation you wish to remove and press the red button:</label>
+                            </div>
+
+                            <div class="control-group">
+                              <!-- Button -->
+                              <div class="controls">
+                                <div class="buttonstyle1" id="poisto" onclick="poistaAika()">
+                                    <button class="btn btn-danger">Poista valittu aika</button>    
+                                </div>
+                              </div>
+                            </div>
+                          </fieldset>
+                        </form>
+
+                    </div> 
+                    <div class="col-sm-6 col-xs-12Modified">
+                        <fieldset>
+                            <label class="options-label" for="aboutDescription" id="aboutHeading">Added movie reservations and seating:</label>
+                            
+                            <select id="optionsSelect" size="2" style="width:100%;height:200px;">
+                            <optgroup label="ElokuvanNimiTahan">
+                                <option value="1">1</option>
+                            </optgroup>
+                            <optgroup label="ElokuvanNimiTahan">
+                                <option value="2">2</option>
+                            </optgroup>
+                            <optgroup label="ElokuvanNimiTahan">
+                                <option value="3">3</option>
+                            </optgroup>
+                            <optgroup label="ElokuvanNimiTahan">
+                                <option value="4">4</option>
+                            </optgroup>
+                            </select>
+                           
+<!--                            <textarea readonly class="form-control" rows="10" id="addedUsersArea"></textarea>-->
+                        </fieldset>
+                    </div>
+                  </div>
+                </div> <!-- Käyttäjänlisäys -->
+             </div>
+         </div> <!-- /.Experimental lists-grouping starts after this comment --> 
+        
+          
+    <div class="container5">
+        <div id="teatteriSetti" class="list-group list-group-horizontal teatteriSetit" >
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active teatteriTogglet" onclick="toggleTeatteri(0)">
+            <div class="d-flex w-100 justify-content-between">
+              <h3 class="mb-1">Elokuvateatteri 1</h3>
+              <small>Last edit 3 days ago</small>
+            </div>
+            <p class="mb-1">Last edited value was "aika ##.##" "Elokuva ?"</p>
+            <small>Click these tiles to chance the avenue</small>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start teatteriTogglet" onclick="toggleTeatteri(1)">
+            <div class="d-flex w-100 justify-content-between">
+              <h3 class="mb-1">Elokuvateatteri 2</h3>
+              <small class="text-muted">Last edit 3 days ago</small>
+            </div>
+            <p class="mb-1">Last edited value was "aika ##.##" "Elokuva ?"</p>
+            <small>Click these tiles to chance the avenue</small>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start teatteriTogglet" onclick="toggleTeatteri(2)">
+            <div class="d-flex w-100 justify-content-between">
+              <h3 class="mb-1">Elokuvateatteri 3</h3>
+              <small class="text-muted">Last edit 3 days ago</small>
+            </div>
+            <p class="mb-1">Last edited value was "aika ##.##" "Elokuva ?"</p>
+            <small>Click these tiles to chance the avenue</small>
+          </a>
+        </div>   <!-- /.Experimental lists-group 1 ends -->
+
+         <!-- /.Experimental lists-grouping 2 starts -->
+        <div class="container6" style="">
+            <div class="row" style="padding-top:50px">
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 "> 
+
+                    <div id="nappiSetti" class="list-group list-group-horizontal nappiSetit">
+                        <a id="saliToggle" href="#" class="list-group-item active saliTogglet original" onclick="toggleShowRoom(0)">Sali 1</a>
+                        <a id="saliToggle" href="#" class="list-group-item saliTogglet" onclick="toggleShowRoom(1)">Sali 2</a>
+                        <a id="saliToggle" href="#" class="list-group-item saliTogglet" onclick="toggleShowRoom(2)">Sali 3</a>
+                        <a id="saliToggle" href="#" class="list-group-item saliTogglet" onclick="toggleShowRoom(3)">Sali 4</a>
+                    </div>
+                    <div id="nappiSetti" class="list-group list-group-horizontal nappiSetit" style="display: none;">
+                        <a id="saliToggle" href="#" class="list-group-item active saliTogglet original" onclick="toggleShowRoom(4)">Sali 5</a>
+                        <a id="saliToggle" href="#" class="list-group-item saliTogglet" onclick="toggleShowRoom(5)">Sali 6</a>
+                        <a id="saliToggle" href="#" class="list-group-item saliTogglet" onclick="toggleShowRoom(6)">Sali 7</a>
+                        <a id="saliToggle" href="#" class="list-group-item saliTogglet" onclick="toggleShowRoom(7)">Sali 8</a>
+                    </div>
+                    <div id="nappiSetti" class="list-group list-group-horizontal nappiSetit" style="display: none;">
+                        <a id="saliToggle" href="#" class="list-group-item active saliTogglet original" onclick="toggleShowRoom(8)">Sali 9</a>
+                        <a id="saliToggle" href="#" class="list-group-item saliTogglet" onclick="toggleShowRoom(9)">Sali 10</a>
+                        <a id="saliToggle" href="#" class="list-group-item saliTogglet" onclick="toggleShowRoom(10)">Sali 11</a>
+                        <a id="saliToggle" href="#" class="list-group-item saliTogglet" onclick="toggleShowRoom(11)">Sali 12</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <container id="napitTabletDiv">
+           <p style="margin:20px 30px; color: #dde3d9">Valitse elokuva ja paikka klikkaamalla vapaanaolevia aikoja</p>
+            <div class="buttonDivider" style="margin:20px 30px">
+                <div class="form-group">
+                    <label for="sel1" style="color: #dde3d9">Valitsemasi elokuvan nimi:</label>
+                    <input type="text" class="form-control" id="usrInputNimi">
+                </div> 
+                <div class="form-group" id="ElokuvaNimiImput" style="margin-left: 10px">
+                    <label for="usr" style="color: #dde3d9">Paikkavalintasi elokuvan salissa:</label>
+                    <input type="text" class="form-control" id="usrInputNimi">
+                </div>
+                <div class="buttonstyle1" id="asetus" onclick="reserveSeat()">
+                    <button class="btn btn-success">Varaa valittu aika aika</button>
+                </div>
+                <div class="buttonstyle1 btn btn-primary" id="asetus" onclick="varaaAika()">
+                    <button class="btn btn-success">Vahvista paikkavalinnat</button>
+                </div>
+            </div>
+            
+            <div id="seatSelectionContainer" class="container-fluid seatSelectionContainer">
+                <div id="seatDiv" class="row seatSelection elementToHide">
+                    <div id="#seatWrapper" class="col-xs-6 col-sm-6 col-md-6">A
+                    
+                    <div class="seatRow A">
+                        <div class="seatRowNumber">
+                            Row 1
+                        </div>
+                        <div id="Seat" title="" role="checkbox" value="45" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber seatUnavailable">1</div>
+                        <div id="Seat" role="checkbox" value="45" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">2</div>
+                        <div id="Seat" role="checkbox" value="45" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">3</div>
+                        <div id="Seat" role="checkbox" value="45" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber seatUnavailable">4</div>
+                    </div>
+                    
+                    <div class="seatRow A">
+                        <div class="seatRowNumber">
+                            Row 2
+                        </div>
+                        <div id="Seat" role="checkbox" value="42" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">9</div>
+                        <div id="Seat" role="checkbox" value="42" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber seatUnavailable">10</div>
+                        <div id="Seat" role="checkbox" value="42" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">11</div>
+                        <div id="Seat" role="checkbox" value="42" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">12</div>
+                        
+                    </div>
+                    
+                    <div class="seatRow A">
+                        <div class="seatRowNumber">
+                            Row 3
+                        </div>
+                        <div id="Seat" role="checkbox" value="38" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber seatUnavailable">17</div>
+                        <div id="Seat" role="checkbox" value="38" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">18</div>
+                        <div id="Seat" role="checkbox" value="38" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber seatUnavailable">19</div>
+                        <div id="Seat" role="checkbox" value="38" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">20</div>
+                    </div>
+                    
+                    <div class="seatRow A">
+                        <div class="seatRowNumber">
+                            Row 4
+                        </div>
+                        <div id="Seat" role="checkbox" value="30" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">21</div>
+                        <div id="Seat" role="checkbox" value="30" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">22</div>
+                        <div id="Seat" role="checkbox" value="30" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">23</div>
+                        <div id="Seat" role="checkbox" value="30" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">24</div>
+
+                    </div>
+                    
+                    </div>
+
+<!--
+                    <div class="col-xs-2 col-sm-2 col-md-2">B
+                    
+                    </div>
+-->
+
+                    <div id="#seatWrapper" class="col-xs-6 col-sm-6 col-md-6">B
+                    
+                    <div class="seatRow B">
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">5</div>
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">6</div>
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">7</div>
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">8</div>
+                    </div>
+                    
+                    <div class="seatRow B">
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">13</div>
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">14</div>
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">15</div>
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">16</div>
+                    </div>
+                    
+                    <div class="seatRow B">
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">21</div>
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">22</div>
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">23</div>
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">24</div>
+                    </div>
+                    
+                    <div class="seatRow B">
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">25</div>
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">26</div>
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">27</div>
+                        <div id="Seat" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">28</div>
+                    </div>
+                    
+                    </div>
+                </div>
+            </div>
+            
+            
+           <div id="insertTableDiv" class="tablediv">
+           
+        </div>
+            
+            
+        
+        </container>
+        
+    </div>
+            
+    </div> <!-- /.Experimental lists-grouping ends before previous tag --> 
+    
+
+    <script language="JavaScript" type="text/javascript" src="jq/jquery-3.2.1.js"></script>
+    <script src="elokuvaAsiakassivuSkripti.js"></script>
+    <script src="js/bootstrap.min.js"></script> 
+    <script src="varausohjelmaJSON.js"></script>
+        <script type='text/javascript'>
+            
+        function getUudetSalit(){
+        tablelist = $(".tableTogglet");
+        }
+        getUudetSalit();
+        </script>
+        <script>
+        getUudetSalit();
+        toggleShowRoom(0);
+        </script>
+
+</body>
+
+</html>
